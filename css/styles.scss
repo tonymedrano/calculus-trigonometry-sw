@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+
+body {
+    font-family: 'Inconsolata';
+    padding: 0;
+    margin: 0;
+    background: olive;
+
+    div {
+        width: 350px;
+        font-size: 40px;
+        color: #DF0174;
+        margin: 40px auto;
+        padding: 40px;
+        border-style: dotted;
+        border-color: #ccc;
+    }
+    svg { width: 100%; height: auto; }
+}
