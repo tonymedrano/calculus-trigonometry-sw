@@ -80,7 +80,6 @@ const backgroundColor: any = {
 };
 
 //. Audio settings ----->
-let sound: boolean = false;
 const options: any = {
   stop: () => stop(),
   start: () => start()
@@ -119,24 +118,20 @@ musicController.open();
 
 //. Global Variables for Audio ----->
 let audioContext: any;
-let audioBuffer: any;
 let sourceNode: any;
 let analyserNode: any;
 let javascriptNode: any;
 let audioData: any = null;
 let audioPlaying: boolean = false;
-let sampleSize: number = 1024; //. number of samples to collect before analyzing data ----->
-let amplitudeArray: any; //. array to hold time domain data ----->
-//. This must be hosted on the same server as this page - otherwise you get a Cross Site Scripting error ----->
-let audioUrl: string = './audio/smooth_criminal.mp3';
+const sampleSize: number = 1024;
+let amplitudeArray: any;
+const audioUrl: string = './audio/smooth_criminal.mp3';
 
 const setupAudioNodes = () => {
   sourceNode = audioContext.createBufferSource();
   analyserNode = audioContext.createAnalyser();
   javascriptNode = audioContext.createScriptProcessor(sampleSize, 1, 1);
-  //. Create the array for the data values ----->
   amplitudeArray = new Uint8Array(analyserNode.frequencyBinCount);
-  //. Now connect the nodes together ----->
   sourceNode.connect(audioContext.destination);
   sourceNode.connect(analyserNode);
   analyserNode.connect(javascriptNode);
@@ -196,12 +191,12 @@ const start = () => {
   } else {
     playSound(audioData);
   }
-  sound = true;
+  audioPlaying = true;
 };
 
 const stop = () => {
   sourceNode.stop(0);
-  sound = false;
+  audioPlaying = false;
 };
 //. Render ---->
 const _update = () => {
@@ -210,12 +205,11 @@ const _update = () => {
   const grid = `hsl(${Math.abs(gridColor.h * Math.sin(speed))}, ${
     gridColor.s
   }%, ${gridColor.l}%)`;
-  
-  if (sound) {
-    background(ctx, 15, 45, grid, backgroundColor);
+  background(ctx, 15, 45, grid, backgroundColor);
+  if (audioPlaying) {
     drawAudio(ctx, strokeColor);
   } else {
-    background(ctx, 15, 45, grid, backgroundColor);
+
     sinewave.run(ctx, width, height, wave, speed, strokeColor);
   }
 
@@ -233,7 +227,7 @@ const drawAudio = (ctx: any, fill: any) => {
   for (let i = 0; i < amplitudeArray.length; i++) {
     let value = amplitudeArray[i] / 256;
     let y = width - height * value - 1;
-    ctx.lineTo(i, (y-wave.y) + Math.sin(i * (amplitudeArray.length + wave.length) + speed) * wave.amplitude * Math.sin(speed))
+    ctx.lineTo(i, (y-wave.y) + Math.sin(i * (wave.length) + speed) * wave.amplitude * Math.sin(speed))
   }
   
   ctx.strokeStyle = `hsl(${Math.abs(strokeColor.h * Math.sin(speed))}, ${strokeColor.s}%, ${strokeColor.l}%)`
