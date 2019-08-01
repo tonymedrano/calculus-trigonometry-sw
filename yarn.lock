@@ -2,11 +2,6 @@
 # yarn lockfile v1
 
 
-"@types/dat.gui@^0.7.3":
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/@types/dat.gui/-/dat.gui-0.7.3.tgz#105bf21b31ab07d9b11684b9b48c76034aeea5a4"
-  integrity sha512-uU5tYMquFLLk2Yq6p2jjbR/iZkcM0cp7V67eGA8gDVgkcGBStJNRF13mV9S9K1X7qNRKSUkVmspa6CBCFUsHqw==
-
 "@types/jasmine@^2.8.6":
   version "2.8.16"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.8.16.tgz#a6cb24b1149d65293bd616923500014838e14e7d"
