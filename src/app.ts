@@ -200,16 +200,12 @@ const stop = () => {
 };
 //. Render ---->
 const _update = () => {
-  //. Clear canvas ----->
-  //  base.clear(ctx, width, height)
-  const grid = `hsl(${Math.abs(gridColor.h * Math.sin(speed))}, ${
-    gridColor.s
-  }%, ${gridColor.l}%)`;
+  const grid = `hsl(${Math.abs(gridColor.h * Math.sin(speed))}, ${gridColor.s}%, ${gridColor.l}%)`;
   background(ctx, 15, 45, grid, backgroundColor);
+  
   if (audioPlaying) {
-    drawAudio(ctx, strokeColor);
+    sinewave.sound(ctx, width, height, wave, amplitudeArray, strokeColor, speed)
   } else {
-
     sinewave.run(ctx, width, height, wave, speed, strokeColor);
   }
 
@@ -217,21 +213,5 @@ const _update = () => {
   // angle += speed
   speed += wave.frequency;
   requestAnimationFrame(_update);
-};
-
-const drawAudio = (ctx: any, fill: any) => {
-  ctx.save();
-  ctx.beginPath();
-  ctx.moveTo(0, height / 2);
-  ctx.globalCompositeOperation = "lighter";
-  for (let i = 0; i < amplitudeArray.length; i++) {
-    let value = amplitudeArray[i] / 256;
-    let y = width - height * value - 1;
-    ctx.lineTo(i, (y-wave.y) + Math.sin(i * (wave.length) + speed) * wave.amplitude * Math.sin(speed))
-  }
-  
-  ctx.strokeStyle = `hsl(${Math.abs(strokeColor.h * Math.sin(speed))}, ${strokeColor.s}%, ${strokeColor.l}%)`
-  ctx.stroke()
-  ctx.restore()
 };
 _update();

@@ -25,6 +25,22 @@ const plotSine = ( ctx: any, width: number, height: number, wave: any, speed: nu
   ctx.restore()
 }
 
+const plotAudio = (ctx: any, width: any, height: any, wave: any, amplitude: any, strokeColor: any, speed: any) => {
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0, height / 2);
+  ctx.globalCompositeOperation = "lighter";
+  for (let i = 0; i < (amplitude.length); i++) {
+    let value = amplitude[i] / 256;
+    let y = width - height * value - 1;
+    ctx.lineTo(i, (y-wave.y) + Math.sin(i * (amplitude.length + wave.length) + speed) * wave.amplitude * Math.sin(speed))
+  }
+  
+  ctx.strokeStyle = `hsl(${Math.abs(strokeColor.h * Math.sin(speed))}, ${strokeColor.s}%, ${strokeColor.l}%)`
+  ctx.stroke()
+  ctx.restore()
+};
+
 const run = (
   ctx: any,
   width: number,
@@ -36,6 +52,12 @@ const run = (
   plotSine(ctx, width, height, wave, speed, stroke)
 }
 
+const sound = (
+  ctx: any, width: any, height: any, wave: any, amplitude: any, strokeColor: any,speed: number) => {
+  plotAudio(ctx, width, height, wave, amplitude, strokeColor, speed)
+}
+
 export const sinewave = {
-  run
+  run,
+  sound
 }
