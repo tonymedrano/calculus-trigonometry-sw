@@ -36,7 +36,7 @@
     "karma-jasmine": "^1.1.1",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-typescript": "^3.0.12",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.13.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.1",
     "ts-loader": "^2.3.7",
