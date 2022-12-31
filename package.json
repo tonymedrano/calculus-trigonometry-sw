@@ -28,7 +28,7 @@
   "homepage": "https://github.com/tonymedrano/typescript-sass.git#readme",
   "devDependencies": {
     "@types/jasmine": "^2.8.6",
-    "css-loader": "^0.28.9",
+    "css-loader": "^6.7.3",
     "jasmine-core": "^2.99.1",
     "karma": "^2.0.0",
     "karma-chrome-launcher": "^2.2.0",
@@ -37,12 +37,12 @@
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-typescript": "^3.0.12",
     "node-sass": "^4.7.2",
-    "sass-loader": "^6.0.6",
-    "style-loader": "^0.20.1",
-    "ts-loader": "^2.3.7",
+    "sass-loader": "^13.2.0",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.4.2",
     "typescript": "^2.6.0-dev.20170912",
     "typings": "^2.1.1",
-    "webpack": "^3.10.0",
+    "webpack": "^5.75.0",
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
